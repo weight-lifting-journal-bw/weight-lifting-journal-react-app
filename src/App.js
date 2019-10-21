@@ -1,12 +1,30 @@
 import React from 'react';
-import logo from './logo.svg';
+
+import { Provider } from "react-redux";
+import { combineReducers, createStore } from "redux";
+
+import * as reducers from "./state/reducers";
+
 import './App.css';
 
 function App() {
+
+  const rootReducer = combineReducers({
+    count: reducers.countReducer,
+    exercises: reducers.exerciseReducer,
+  })
+
+  const store = createStore(
+    rootReducer,
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
+  );
+
   return (
-    <div className="App">
+    <Provider store = {store}>
+      <div className="App">
       
-    </div>
+      </div>
+    </Provider>
   );
 }
 
