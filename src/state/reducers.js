@@ -20,8 +20,8 @@ const initialCount = 0;
 
 export const countReducer = (state = initialCount, action) => {
   switch (action.type) {
-    case actionTypes.ADD_EXERCISE:
-      return state++;
+    case actionTypes.INCREMENT:
+      return state + 1;
 
     default:
       return state;

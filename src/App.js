@@ -6,6 +6,7 @@ import { combineReducers, createStore } from "redux";
 import * as reducers from "./state/reducers";
 
 import './App.css';
+import CountComponent from './CountComponent';
 
 function App() {
 
@@ -19,9 +20,13 @@ function App() {
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
   );
 
+  console.log(store);
+  
+
   return (
     <Provider store = {store}>
       <div className="App">
+      <CountComponent />
       
       </div>
     </Provider>
