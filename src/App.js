@@ -8,6 +8,7 @@ import * as reducers from "./state/reducers";
 
 import './App.css';
 import CountComponent from './CountComponent';
+import Dashboard from './Components/Dashboard';
 
 function App() {
 
@@ -32,6 +33,7 @@ function App() {
     <Provider store = {store}>
       <div className="App">
       <CountComponent />
+      <Dashboard />
       
       </div>
     </Provider>
