@@ -5,7 +5,7 @@ const initialExerciseList = [];
 export const exerciseReducer = (state = initialExerciseList, action) => {
   switch (action.type) {
     case actionTypes.ADD_EXERCISE:
-      return state;
+      return action.payload;
 
     case actionTypes.REMOVE_EXERCISE:
       return state;
