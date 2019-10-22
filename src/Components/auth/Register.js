@@ -18,7 +18,7 @@ const Signup = props => {
         localStorage.setItem("token", res.data.authToken);
 
         console.log(res.data);
-        props.history.push("/exercises");
+        props.history.push("/dashboard");
       })
       .catch(err => console.log(err));
   };

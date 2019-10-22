@@ -1,9 +1,9 @@
 import * as actionTypes from './actionTypes'
-
-export const addExercise = (exercise) => {
+import AxiosWithAuth from "../utils/AxiosWithAuth";
+export const addExercise = (exercises) => {
     return ({
         type: actionTypes.ADD_EXERCISE,
-        payload: exercise
+        payload: exercises
     })
 }
 
@@ -18,4 +18,12 @@ export const removeExercise = (exercise) => {
         type: actionTypes.REMOVE_EXERCISE,
         payload: exercise
     })
+}
+
+export const getExercises = () => dispatch => {
+    AxiosWithAuth().get('https://weight-lift-1.herokuapp.com/api/exercises')
+    .then(({data}) => {
+        dispatch(addExercise(data))
+    })
+    .catch(err => console.log(err))
 }
