@@ -7,6 +7,7 @@ import * as reducers from "./state/reducers";
 
 import './App.css';
 import CountComponent from './CountComponent';
+import Exercises from './Components/Exercises';
 
 function App() {
 
@@ -27,7 +28,7 @@ function App() {
     <Provider store = {store}>
       <div className="App">
       <CountComponent />
-      
+      <Exercises />
       </div>
     </Provider>
   );
