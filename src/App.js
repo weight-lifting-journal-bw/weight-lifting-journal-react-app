@@ -1,12 +1,42 @@
 import React from 'react';
-import logo from './logo.svg';
+
+import { Provider } from "react-redux";
+import { combineReducers, createStore , applyMiddleware, compose} from "redux";
+import thunk from "redux-thunk";
+
+import * as reducers from "./state/reducers";
+
 import './App.css';
+import CountComponent from './CountComponent';
+import Dashboard from './Components/Dashboard';
+
 
 function App() {
+
+  const rootReducer = combineReducers({
+    count: reducers.countReducer,
+    exercises: reducers.exerciseReducer,
+  })
+
+  const store = createStore(
+    rootReducer,
+    {},
+    compose(
+      applyMiddleware(thunk),
+      window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
+    )
+  );
+
+  console.log(store);
+  
+
   return (
-    <div className="App">
-      
-    </div>
+    <Provider store = {store}>
+      <div className="App">
+        <CountComponent />
+        <Dashboard />
+      </div>
+    </Provider>
   );
 }
 
