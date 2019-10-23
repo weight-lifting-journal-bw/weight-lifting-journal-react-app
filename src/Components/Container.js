@@ -34,7 +34,7 @@ function Container(props) {
           count
         </NavLink>
         &nbsp;
-        <NavLink exact to="/exercises" activeClassName="active">
+        <NavLink exact to="/exercises/add" activeClassName="active">
           Exercises
         </NavLink>
         <button onClick={Logout}>Logout</button>
@@ -54,13 +54,8 @@ function Container(props) {
         />
         <Route
           exact
-          path="/exercises"
-          component={props => withAuthCheck(Exercises, props)}
-        />
-        <Route
-          exact
           path="/exercises/add"
-          component={props => withAuthCheck(Dashboard, props)}
+          component={props => withAuthCheck(Exercises, props)}
         />
         &nbsp;
         <Route path="/signup" component={Signup} />
