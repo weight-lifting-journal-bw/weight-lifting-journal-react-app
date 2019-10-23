@@ -1,23 +1,21 @@
 import React from "react";
-
 import { Provider } from "react-redux";
 import { Route, NavLink } from "react-router-dom";
 import * as reducers from "./state/reducers";
-
 import "./App.css";
-import CountComponent from "./CountComponent";
-import Exercises from "./Components/Exercises";
-import Signup from "./Components/auth/Register";
 import { combineReducers, createStore, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk";
-import Dashboard from "./Components/Dashboard";
-import Login from "./Components/auth/Login";
+
 import Container from "./Components/Container";
+
+import { beginEdit } from "./state/actionCreators";
+
 
 function App(props) {
   const rootReducer = combineReducers({
     count: reducers.countReducer,
-    exercises: reducers.exerciseReducer
+    exercises: reducers.exerciseReducer,
+    exerciseForm: reducers.exerciseFormReducer,
   });
 
   const store = createStore(
