@@ -15,7 +15,6 @@ export const exerciseReducer = (state = initialExerciseList, action) => {
   }
 };
 
-
 const initialCount = 0;
 
 export const countReducer = (state = initialCount, action) => {
@@ -27,3 +26,22 @@ export const countReducer = (state = initialCount, action) => {
       return state;
   }
 };
+
+const initialExerciseForm = {
+  title: "",
+  targeted_area: "",
+  reps_completed: "",
+  date: Date.now(),
+  user_id: Number(localStorage.getItem("userID"))
+};
+
+
+export const exerciseFormReducer = (state = initialExerciseForm, action) => {
+  switch (action.type) {
+    case actionTypes.BEGIN_EDIT:
+      return action.payload;
+  
+    default:
+      return state;
+  }
+}

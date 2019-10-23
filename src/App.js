@@ -16,7 +16,8 @@ import Login from "./Components/auth/Login";
 function App() {
   const rootReducer = combineReducers({
     count: reducers.countReducer,
-    exercises: reducers.exerciseReducer
+    exercises: reducers.exerciseReducer,
+    exerciseForm: reducers.exerciseFormReducer,
   });
 
   const store = createStore(
