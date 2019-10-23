@@ -21,13 +21,27 @@ const Exercises = props => {
 
   const exercises = e => {
     e.preventDefault();
-    axiosWithAuth()
-      .post(`https://weight-lift-1.herokuapp.com/api/exercises`, exerciseForm)
-      .then(res => {
-        console.log(res);
-        props.history.push("/dashboard");
-      })
-      .catch(err => console.log(err));
+    form.title === ""
+      ? axiosWithAuth()
+          .post(
+            `https://weight-lift-1.herokuapp.com/api/exercises`,
+            exerciseForm
+          )
+          .then(res => {
+            console.log(res);
+            props.history.push("/dashboard");
+          })
+          .catch(err => console.log(err))
+      : axiosWithAuth()
+          .put(
+            `https://weight-lift-1.herokuapp.com/api/exercises/${form.id}`,
+            exerciseForm
+          )
+          .then(res => {
+            console.log(res);
+            props.history.push("/dashboard");
+          })
+          .catch(err => console.log(err));
   };
 
   var sectionStyle = {
