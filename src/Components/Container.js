@@ -2,10 +2,10 @@ import React from "react";
 import Dashboard from "./Dashboard";
 import Login from "./auth/Login";
 import { Route, NavLink, Redirect, withRouter } from "react-router-dom";
-
 import CountComponent from "../CountComponent";
 import Exercises from "./Exercises";
 import Signup from "./auth/Register";
+import Logo from "../assets/logo.png";
 
 function Container(props) {
   const Logout = () => {
@@ -22,22 +22,30 @@ function Container(props) {
 
   return (
     <div>
+      <img className="logo" src={Logo} />
       <nav>
-        <NavLink exact to="/" activeClassName="active">
+        <NavLink className="navlink" exact to="/" activeClassName="active">
           Login
         </NavLink>
         &nbsp;
-        <NavLink exact to="/dashboard" activeClassName="active">
+        <NavLink
+          className="navlink"
+          exact
+          to="/dashboard"
+          activeClassName="active"
+        >
           Dashboard
         </NavLink>
-        <NavLink exact to="/count" activeClassName="active">
-          count
-        </NavLink>
         &nbsp;
-        <NavLink exact to="/exercises" activeClassName="active">
+        <NavLink
+          className="navlink"
+          exact
+          to="/exercises/add"
+          activeClassName="active"
+        >
           Exercises
         </NavLink>
-        <button onClick={Logout}>Logout</button>
+        <span onClick={Logout}>Logout</span>
       </nav>
 
       <main>
@@ -54,13 +62,8 @@ function Container(props) {
         />
         <Route
           exact
-          path="/exercises"
-          component={props => withAuthCheck(Exercises, props)}
-        />
-        <Route
-          exact
           path="/exercises/add"
-          component={props => withAuthCheck(Dashboard, props)}
+          component={props => withAuthCheck(Exercises, props)}
         />
         &nbsp;
         <Route path="/signup" component={Signup} />

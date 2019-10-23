@@ -42,8 +42,6 @@ export const exerciseFormReducer = (state = initialExerciseForm, action) => {
   switch (action.type) {
     case actionTypes.BEGIN_EDIT:
       return action.payload;
-    case actionTypes.ADD_EXERCISE:
-      return initialExerciseForm;
 
     default:
       return state;
