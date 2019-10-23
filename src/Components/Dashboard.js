@@ -1,6 +1,7 @@
 import React, {useEffect} from "react";
 import { connect } from "react-redux";
 import * as actionCreators from "../state/actionCreators";
+import Exercise from "./Exercise";
 
 export const Dashboard = ({getExercises, exercises}) => {
 
@@ -9,7 +10,7 @@ export const Dashboard = ({getExercises, exercises}) => {
     }, [])
     return (
         <div>
-            {exercises.map(exercise => <h4 key={exercise.id} >{exercise.targeted_area}</h4>)}
+            {exercises.map(exercise => <Exercise key={exercise.id} exercise={exercise} />)}
         </div>
     )
 }
