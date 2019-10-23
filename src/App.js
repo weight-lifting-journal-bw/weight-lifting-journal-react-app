@@ -1,20 +1,17 @@
 import React from "react";
-
 import { Provider } from "react-redux";
 import { Route, NavLink } from "react-router-dom";
 import * as reducers from "./state/reducers";
-
 import "./App.css";
-import CountComponent from "./CountComponent";
-import Exercises from "./Components/Exercises";
-import Signup from "./Components/auth/Register";
 import { combineReducers, createStore, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk";
-import Dashboard from "./Components/Dashboard";
-import Login from "./Components/auth/Login";
+
+import Container from "./Components/Container";
+
 import { beginEdit } from "./state/actionCreators";
 
-function App() {
+
+function App(props) {
   const rootReducer = combineReducers({
     count: reducers.countReducer,
     exercises: reducers.exerciseReducer,
@@ -31,35 +28,17 @@ function App() {
     )
   );
 
+  const Logout = () => {
+    localStorage.clear();
+    props.history.push("/login");
+  };
+
   console.log(store);
 
   return (
     <Provider store={store}>
       <div className="App">
-        <NavLink exact to="/login" activeClassName="active">
-          Login
-        </NavLink>
-        &nbsp;
-        <NavLink exact to="/dashboard" activeClassName="active">
-          Dashboard
-        </NavLink>
-        <NavLink exact to="/count" activeClassName="active">
-          count
-        </NavLink>
-        &nbsp;
-        <NavLink exact to="/exercises" onClick = {() => {
-          console.log(store);
-          store.dispatch(beginEdit(reducers.initialExerciseForm))
-        }} activeClassName="active">
-          Exercises
-        </NavLink>
-        &nbsp;
-        <Route exact path="/login" component={Login} />
-        <Route exact path="/signup" component={Signup} />
-        <Route exact path="/count" component={CountComponent} />
-        <Route exact path="/dashboard" component={Dashboard} />
-        <Route exact path="/exercises" component={Exercises} />
-        <Route path="/exercises/add" component={Dashboard} />
+        <Container />
       </div>
     </Provider>
   );
