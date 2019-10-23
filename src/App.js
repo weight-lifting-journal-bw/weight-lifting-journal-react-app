@@ -38,6 +38,9 @@ function App() {
           Login
         </NavLink>
         &nbsp;
+        <NavLink exact to="/dashboard" activeClassName="active">
+          Dashboard
+        </NavLink>
         <NavLink exact to="/count" activeClassName="active">
           count
         </NavLink>
@@ -46,14 +49,12 @@ function App() {
           Exercises
         </NavLink>
         &nbsp;
-        <NavLink exact to="/dashboard" activeClassName="active">
-          Dashboard
-        </NavLink>
         <Route exact path="/login" component={Login} />
         <Route exact path="/signup" component={Signup} />
         <Route exact path="/count" component={CountComponent} />
-        <Route exact path="/exercises" component={Exercises} />
         <Route exact path="/dashboard" component={Dashboard} />
+        <Route exact path="/exercises" component={Exercises} />
+        <Route path="/exercises/add" component={Dashboard} />
       </div>
     </Provider>
   );
