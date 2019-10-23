@@ -21,3 +21,34 @@
   color: #09d3ac;
 }
 
+.exerciseForm {
+  display: flex;
+  flex-direction: column;
+  width: 500px;
+  margin: auto;
+  text-align: center;
+}
+
+.exerciseForm input {
+  margin:0 auto;
+  padding: 10px;
+  width: 300px;
+}
+
+.exerciseForm button {
+  width: 200px;
+  margin: 30px auto;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.exerciseForm label {
+  color: white;
+  margin: 20px 0;
+}
+
+.exerciseForm p {
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+}

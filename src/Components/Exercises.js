@@ -1,9 +1,12 @@
 import React, { useState } from "react";
+
 import { Link } from 'react-router-dom';
 import { connect } from "react-redux";
 import * as actionCreators from "../state/actionCreators";
 
+
 import axiosWithAuth from '../utils/AxiosWithAuth';
+import Background from '../assets/formpic.jpg';
 
 const Exercises = (props) => {
   const form = props.exerciseForm
@@ -23,16 +26,20 @@ const Exercises = (props) => {
       .post(`https://weight-lift-1.herokuapp.com/api/exercises`, exerciseForm)
     .then(res => {
         console.log(res);
-        // localStorage.setItem('token', res.data.payload);
         props.history.push('/dashboard')
     })
     .catch(err => console.log(err));
   }
 
+  var sectionStyle = {
+    backgroundImage: `url(${Background})`,
+    height: "800px"
+  };
+  
   return (
     <>
-      <form className= "exerciseForm" onSubmit={exercises}>
-        <h2>Create exercise</h2>
+      <form style = {sectionStyle} className= "exerciseForm" onSubmit={exercises}>
+        <p>Create exercise</p>
         <label>Title
           </label>
         <input
@@ -57,9 +64,7 @@ const Exercises = (props) => {
           value={Number(exerciseForm.reps_completed)}
           onChange={handleChange}
         />
-        {/* <Link to='/exercises/add'> */}
         <button type="submit">Start Exercise</button>
-        {/* </Link> */}
       </form>
     </>
   );
