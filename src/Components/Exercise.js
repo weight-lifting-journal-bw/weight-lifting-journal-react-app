@@ -4,20 +4,15 @@ import styled from "styled-components";
 import "react-bulma-components/dist/react-bulma-components.min.css";
 
 export default function Exercise(props) {
-    console.log(props);
-    const {targeted_area, reps_completed, title} = props.exercise;
+  console.log(props);
+  const { targeted_area, reps_completed, title } = props.exercise;
   return (
     <StyledCard>
       <Heading>{title}</Heading>
       <Content>{`Targeted Area: ${targeted_area}`}</Content>
       <Content>{`Reps Completed: ${reps_completed}`}</Content>
       <div>
-        <Button
-        
-            color="dark"
-        >
-          Edit
-        </Button>
+        <Button color="dark">Edit</Button>
         <Button onClick={() => {}} color="danger">
           Delete
         </Button>
