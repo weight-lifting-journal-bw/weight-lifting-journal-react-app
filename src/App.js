@@ -12,6 +12,7 @@ import { combineReducers, createStore, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk";
 import Dashboard from "./Components/Dashboard";
 import Login from "./Components/auth/Login";
+import { beginEdit } from "./state/actionCreators";
 
 function App() {
   const rootReducer = combineReducers({
@@ -46,7 +47,10 @@ function App() {
           count
         </NavLink>
         &nbsp;
-        <NavLink exact to="/exercises" activeClassName="active">
+        <NavLink exact to="/exercises" onClick = {() => {
+          console.log(store);
+          store.dispatch(beginEdit(reducers.initialExerciseForm))
+        }} activeClassName="active">
           Exercises
         </NavLink>
         &nbsp;

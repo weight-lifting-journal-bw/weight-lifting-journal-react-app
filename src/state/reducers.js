@@ -27,7 +27,7 @@ export const countReducer = (state = initialCount, action) => {
   }
 };
 
-const initialExerciseForm = {
+export const initialExerciseForm = {
   title: "",
   targeted_area: "",
   reps_completed: "",
