@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 import axios from "axios";
 import Styled from "styled-components";
 import "./auth.css";
+import jwt_decode from "jwt-decode";
 
 const Signup = props => {
   const [newUser, setNewUser] = useState({ username: "", password: "" });
@@ -16,6 +17,8 @@ const Signup = props => {
       )
       .then(res => {
         localStorage.setItem("token", res.data.authToken);
+        const decoded = jwt_decode(res.data.authToken);
+        localStorage.setItem("userID", decoded.subject);
 
         console.log(res.data);
         props.history.push("/dashboard");

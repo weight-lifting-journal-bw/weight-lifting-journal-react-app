@@ -3,27 +3,27 @@ import { NavLink } from "react-router-dom";
 import axios from "axios";
 import Styled from "styled-components";
 import "./auth.css";
-import  jwt_decode  from 'jwt-decode';
+import jwt_decode from "jwt-decode";
 
 const Login = props => {
+  //   console.log(props);
   const [existingUser, setExistingUser] = useState({
     username: "",
     password: ""
   });
 
+  const [loginError, setloginError] = useState("");
   const submitInfo = (event, credentials) => {
     event.preventDefault();
     axios
       .post("https://weight-lift-1.herokuapp.com/api/auth/login", credentials)
       .then(res => {
         localStorage.setItem("token", res.data.authToken);
-        var decoded = jwt_decode(res.data.authToken);
-        console.log(decoded);
-        console.log(res.data);
+        const decoded = jwt_decode(res.data.authToken);
         localStorage.setItem("userID", decoded.subject);
         props.history.push("/dashboard");
       })
-      .catch(err => console.log(err));
+      .catch(err => setloginError("invalid username/password"));
   };
 
   const handleNewUser = event => {
@@ -35,6 +35,7 @@ const Login = props => {
     <div>
       <StyledForm onSubmit={e => submitInfo(e, existingUser)}>
         <StyledH3>Please login</StyledH3>
+        <p style={{ color: "red" }}>{loginError}</p>
         <Label>username</Label>
         <StyledInput
           type="text"
@@ -51,7 +52,7 @@ const Login = props => {
         />
         <StyledButton>Login</StyledButton>
         <StyledParagraph>
-          Already have an account?
+          Don't have an account?
           <NavLink to="/signup">signup</NavLink>
         </StyledParagraph>
       </StyledForm>
