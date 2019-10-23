@@ -8,7 +8,9 @@ export const exerciseReducer = (state = initialExerciseList, action) => {
       return action.payload;
 
     case actionTypes.REMOVE_EXERCISE:
-      const remainingExercises = state.filter(exercise => exercise.id !== action.payload.id)
+      const remainingExercises = state.filter(
+        exercise => exercise.id !== action.payload.id
+      );
       return remainingExercises;
 
     default:
@@ -36,13 +38,14 @@ export const initialExerciseForm = {
   user_id: Number(localStorage.getItem("userID"))
 };
 
-
 export const exerciseFormReducer = (state = initialExerciseForm, action) => {
   switch (action.type) {
     case actionTypes.BEGIN_EDIT:
       return action.payload;
-  
+    case actionTypes.ADD_EXERCISE:
+      return initialExerciseForm;
+
     default:
       return state;
   }
-}
+};
