@@ -1,12 +1,16 @@
 import React, { useState } from "react";
+import { Link } from 'react-router-dom';
+
 import axiosWithAuth from '../utils/AxiosWithAuth';
 
 const Exercises = (props) => {
-  const [exercise, setExercise] = useState({title: '', targeted_area: '', date: new Date(365 * 24 * 60 * 60 * 1000) })
+  const [exerciseForm, setExerciseForm] = useState({
+    title: '', targeted_area: '', reps_completed: '', date: Date.now(), user_id: Number(localStorage.getItem('userID'))
+  })
 
   const handleChange = e => {
-    setExercise({
-      ...exercise, 
+    setExerciseForm({
+      ...exerciseForm, 
       [e.target.name]: e.target.value
     });
   };
@@ -14,11 +18,11 @@ const Exercises = (props) => {
   const exercises = e => {
     e.preventDefault();
     axiosWithAuth()
-      .post(`https://weight-lift-1.herokuapp.com/api/exercises`)
+      .post(`https://weight-lift-1.herokuapp.com/api/exercises`, exerciseForm)
     .then(res => {
         console.log(res);
-        localStorage.setItem('token', res.data.payload);
-        props.history.push('/exercises')
+        // localStorage.setItem('token', res.data.payload);
+        props.history.push('/dashboard')
     })
     .catch(err => console.log(err));
   }
@@ -28,30 +32,32 @@ const Exercises = (props) => {
       <form className= "exerciseForm" onSubmit={exercises}>
         <h2>Create exercise</h2>
         <label>Title
+          </label>
         <input
           type='text'
           name='title'
-          value={exercise.title}
+          value={exerciseForm.title}
           onChange={handleChange}
         />
-        </label>
         <label>Targeted Area
+          </label>
         <input 
           type='text'
           name='targeted_area'
-          value={exercise.targeted_area}
+          value={exerciseForm.targeted_area}
           onChange={handleChange}
         />
-        </label>
         <label>Repetitions completed
+          </label>
         <input 
           type='text'
           name='reps_completed'
-          value={exercise.targeted_area}
+          value={Number(exerciseForm.reps_completed)}
           onChange={handleChange}
         />
-        </label>
-        <button>Start Exercise</button>
+        {/* <Link to='/exercises/add'> */}
+        <button type="submit">Start Exercise</button>
+        {/* </Link> */}
       </form>
     </>
   );

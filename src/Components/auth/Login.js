@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 import axios from "axios";
 import Styled from "styled-components";
 import "./auth.css";
+import  jwt_decode  from 'jwt-decode';
 
 const Login = props => {
   const [existingUser, setExistingUser] = useState({
@@ -16,8 +17,10 @@ const Login = props => {
       .post("https://weight-lift-1.herokuapp.com/api/auth/login", credentials)
       .then(res => {
         localStorage.setItem("token", res.data.authToken);
-
+        var decoded = jwt_decode(res.data.authToken);
+        console.log(decoded);
         console.log(res.data);
+        localStorage.setItem("userID", decoded.subject);
         props.history.push("/dashboard");
       })
       .catch(err => console.log(err));
