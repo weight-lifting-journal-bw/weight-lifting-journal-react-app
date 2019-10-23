@@ -4,13 +4,16 @@ import * as actionCreators from "../state/actionCreators";
 import Exercise from "./Exercise";
 
 export const Dashboard = ({getExercises, exercises}) => {
-
+    const userId = localStorage.getItem('userID')
     useEffect(() => {
         getExercises()
     }, [])
     return (
         <div>
-            {exercises.map(exercise => <Exercise key={exercise.id} exercise={exercise} />)}
+            {
+                exercises
+                .filter(exercise => exercise.user_id == userId)
+                .map(exercise => <Exercise key={exercise.id} exercise={exercise} />)}
         </div>
     )
 }
