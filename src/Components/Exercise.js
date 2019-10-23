@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 
 import * as actionCreators from "../state/actionCreators";
 import { Button, Card, Heading, Content } from "react-bulma-components";
@@ -13,6 +14,7 @@ export function Exercise(props) {
   const startEdit = (exercise) => {
     beginEdit(exercise)
     console.log(exercise);
+    props.history.push('/exercises')
   }
   return (
     <StyledCard>
@@ -45,4 +47,4 @@ const StyledCard = styled(Card)`
 export default connect(
   state => state,
   actionCreators
-)(Exercise)
+)(withRouter(Exercise))

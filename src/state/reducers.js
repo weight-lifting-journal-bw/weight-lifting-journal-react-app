@@ -30,7 +30,7 @@ export const countReducer = (state = initialCount, action) => {
 export const initialExerciseForm = {
   title: "",
   targeted_area: "",
-  reps_completed: "",
+  reps_completed: 0,
   date: Date.now(),
   user_id: Number(localStorage.getItem("userID"))
 };
