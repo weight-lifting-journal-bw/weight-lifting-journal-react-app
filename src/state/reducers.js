@@ -8,7 +8,8 @@ export const exerciseReducer = (state = initialExerciseList, action) => {
       return action.payload;
 
     case actionTypes.REMOVE_EXERCISE:
-      return state;
+      const remainingExercises = state.filter(exercise => exercise.id !== action.payload.id)
+      return remainingExercises;
 
     default:
       return state;
