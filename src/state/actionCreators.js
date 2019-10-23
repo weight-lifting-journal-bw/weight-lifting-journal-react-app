@@ -13,6 +13,13 @@ export const increment = () => {
     })
 }
 
+export const beginEdit = (userForm) => {
+    return ({
+        type: actionTypes.BEGIN_EDIT,
+        payload: userForm,
+    })
+}
+
 export const removeExercise = (exercise) => {
     return ({
         type: actionTypes.REMOVE_EXERCISE,
