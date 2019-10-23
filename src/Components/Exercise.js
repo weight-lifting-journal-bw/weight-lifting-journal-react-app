@@ -1,23 +1,28 @@
 import React from "react";
+import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
+
+import * as actionCreators from "../state/actionCreators";
 import { Button, Card, Heading, Content } from "react-bulma-components";
 import styled from "styled-components";
 import "react-bulma-components/dist/react-bulma-components.min.css";
 
-export default function Exercise(props) {
-    console.log(props);
-    const {targeted_area, reps_completed, title} = props.exercise;
+export function Exercise(props) {
+  console.log(props);
+  const {exercise, beginEdit} = props;
+  const { targeted_area, reps_completed, title } = exercise;
+  const startEdit = (exercise) => {
+    beginEdit(exercise)
+    console.log(exercise);
+    props.history.push('/exercises')
+  }
   return (
     <StyledCard>
       <Heading>{title}</Heading>
       <Content>{`Targeted Area: ${targeted_area}`}</Content>
       <Content>{`Reps Completed: ${reps_completed}`}</Content>
       <div>
-        <Button
-        
-            color="dark"
-        >
-          Edit
-        </Button>
+        <Button onClick = {() => startEdit(exercise)} color="dark">Edit</Button>
         <Button onClick={() => {}} color="danger">
           Delete
         </Button>
@@ -38,3 +43,8 @@ const StyledCard = styled(Card)`
     justify-content: space-evenly;
   }
 `;
+
+export default connect(
+  state => state,
+  actionCreators
+)(withRouter(Exercise))

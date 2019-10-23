@@ -1,3 +1,4 @@
 export const ADD_EXERCISE = 'ADD_EXERCISE'
 export const REMOVE_EXERCISE = 'REMOVE_EXERCISE'
 export const INCREMENT = 'INCREMENT'
+export const BEGIN_EDIT = 'BEGIN_EDIT'

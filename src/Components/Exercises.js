@@ -1,12 +1,17 @@
 import React, { useState } from "react";
 
+import { Link } from 'react-router-dom';
+import { connect } from "react-redux";
+import * as actionCreators from "../state/actionCreators";
+
+
 import axiosWithAuth from '../utils/AxiosWithAuth';
 import Background from '../assets/formpic.jpg';
 
 const Exercises = (props) => {
-  const [exerciseForm, setExerciseForm] = useState({
-    title: '', targeted_area: '', reps_completed: '', date: Date.now(), user_id: Number(localStorage.getItem('userID'))
-  })
+  const form = props.exerciseForm
+  console.log(props);
+  const [exerciseForm, setExerciseForm] = useState(form)
 
   const handleChange = e => {
     setExerciseForm({
@@ -65,4 +70,7 @@ const Exercises = (props) => {
   );
 };
 
-export default Exercises;
+export default connect(
+  state => state,
+  actionCreators,
+)(Exercises);
