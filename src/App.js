@@ -1,6 +1,5 @@
 import React from "react";
 import { Provider } from "react-redux";
-import { Route, NavLink } from "react-router-dom";
 import * as reducers from "./state/reducers";
 import "./App.css";
 import { combineReducers, createStore, applyMiddleware, compose } from "redux";
@@ -10,12 +9,11 @@ import Container from "./Components/Container";
 
 import { beginEdit } from "./state/actionCreators";
 
-
 function App(props) {
   const rootReducer = combineReducers({
     count: reducers.countReducer,
     exercises: reducers.exerciseReducer,
-    exerciseForm: reducers.exerciseFormReducer,
+    exerciseForm: reducers.exerciseFormReducer
   });
 
   const store = createStore(
@@ -27,11 +25,6 @@ function App(props) {
         window.__REDUX_DEVTOOLS_EXTENSION__()
     )
   );
-
-  const Logout = () => {
-    localStorage.clear();
-    props.history.push("/login");
-  };
 
   console.log(store);
 

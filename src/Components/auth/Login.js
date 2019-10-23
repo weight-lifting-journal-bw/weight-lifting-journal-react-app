@@ -32,30 +32,34 @@ const Login = props => {
   };
 
   return (
-    <div>
-      <StyledForm onSubmit={e => submitInfo(e, existingUser)}>
-        <StyledH3>Please login</StyledH3>
-        <p style={{ color: "red" }}>{loginError}</p>
-        <Label>username</Label>
-        <StyledInput
-          type="text"
-          value={existingUser.username}
-          name="username"
-          onChange={handleNewUser}
-        />
-        <Label>password</Label>
-        <StyledInput
-          type="text"
-          value={existingUser.password}
-          name="password"
-          onChange={handleNewUser}
-        />
-        <StyledButton>Login</StyledButton>
-        <StyledParagraph>
-          Don't have an account?
-          <NavLink to="/signup">signup</NavLink>
-        </StyledParagraph>
-      </StyledForm>
+    <div className="formContainer">
+      <div>
+        <StyledForm onSubmit={e => submitInfo(e, existingUser)}>
+          <StyledH3>Enter your credentials to login</StyledH3>
+          <p style={{ color: "red" }}>{loginError}</p>
+          <Label htmlFor="username">username</Label>
+          <StyledInput
+            type="text"
+            id="username"
+            value={existingUser.username}
+            name="username"
+            onChange={handleNewUser}
+          />
+          <Label htmlFor="password">password</Label>
+          <StyledInput
+            id="password"
+            type="text"
+            value={existingUser.password}
+            name="password"
+            onChange={handleNewUser}
+          />
+          <StyledButton>Login</StyledButton>
+          <StyledParagraph>
+            Don't have an account?
+            <NavLink to="/signup">signup</NavLink>
+          </StyledParagraph>
+        </StyledForm>
+      </div>
     </div>
   );
 };
@@ -65,20 +69,18 @@ export default Login;
 //styles
 
 const StyledForm = Styled.form`
-    padding: 0 30px 25px 30px;
-    width: 300px;
-  margin: 0 auto;
-  position: relative;
-  text-align: left;
+    padding: 0px 30px 25px 30px;
+    width: 310px;
+    height:400px;
+  margin:0 auto;
   background: #f3f3f3;
   border: 1px solid #fff;
   border-radius: 5px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
   -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
   -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
-  display: flex;
-  flex-direction: column;
   justify-content: center;
+  position:relative
 `;
 const Label = Styled.label`
     text-align: center;
@@ -90,7 +92,7 @@ margin: 0 auto;
 font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue",
   Helvetica, Arial, "Lucida Grande", sans-serif;
 font-weight: 400;
-font-size: 20px;
+font-size: 16x;
 color: #9d9e9e;
 text-shadow: 1px 1px 0 rgba(256, 256, 256, 1);
 background: #fff;
@@ -102,11 +104,17 @@ box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.5);
 `;
 
 const StyledH3 = Styled.h3`
-text-align:center
+text-align:center;
+font-size:18px;
+font-style:italic;
+padding-bottom:30px;
+padding-top:10px;
+color:#323f58;
+font-weight:bolder
 `;
 
 const StyledButton = Styled.button`
-background: #28d;
+background: #323f58;
 border-color: transparent;
 color: #fff;
 cursor: pointer;
@@ -118,11 +126,11 @@ font-size:14px;
 height:50px;
 border-radius:5px
 &:hover{
-  background:skyblue
+  background:#323f58d7;
 }
 `;
 
 const StyledParagraph = Styled.div`
 text-align: center;
-margin-top:15px
+margin-top:35px
 `;
