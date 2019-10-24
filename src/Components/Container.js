@@ -7,6 +7,10 @@ import Exercises from "./Exercises";
 import Signup from "./auth/Register";
 import Logo from "../assets/logo.png";
 
+import { connect } from "react-redux";
+import { initialExerciseForm } from "../state/reducers";
+import * as actionCreators from "../state/actionCreators";
+
 function Container(props) {
   const Logout = () => {
     localStorage.clear();
@@ -42,6 +46,9 @@ function Container(props) {
           exact
           to="/exercises/add"
           activeClassName="active"
+          onClick = {() => {
+            props.beginEdit(initialExerciseForm)
+          }}
         >
           Exercises
         </NavLink>
@@ -72,4 +79,4 @@ function Container(props) {
   );
 }
 
-export default withRouter(Container);
+export default connect(null, actionCreators)(withRouter(Container)) ;
