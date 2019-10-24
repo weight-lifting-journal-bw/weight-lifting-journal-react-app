@@ -10,6 +10,7 @@ import Background from "../assets/formpic.jpg";
 const Exercises = props => {
   const form = props.exerciseForm;
   console.log(props);
+  form.user_id = localStorage.getItem('userID')
   const [exerciseForm, setExerciseForm] = useState(form);
 
   const handleChange = e => {
