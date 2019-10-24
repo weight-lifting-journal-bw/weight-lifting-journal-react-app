@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { Provider } from "react-redux";
 import * as reducers from "./state/reducers";
 import "./App.css";
@@ -7,7 +7,6 @@ import thunk from "redux-thunk";
 
 import Container from "./Components/Container";
 
-import { beginEdit } from "./state/actionCreators";
 
 function App(props) {
   const rootReducer = combineReducers({
@@ -15,6 +14,10 @@ function App(props) {
     exercises: reducers.exerciseReducer,
     exerciseForm: reducers.exerciseFormReducer
   });
+
+  useEffect( () => {
+    window.cloudinary.setCloudName('spotter-journal')
+  }, [])
 
   const store = createStore(
     rootReducer,
@@ -27,7 +30,6 @@ function App(props) {
     )
   );
 
-  console.log(store);
 
   return (
     <Provider store={store}>
