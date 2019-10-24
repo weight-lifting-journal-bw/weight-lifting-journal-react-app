@@ -3,19 +3,30 @@ import { connect } from "react-redux";
 import * as actionCreators from "../state/actionCreators";
 import Exercise from "./Exercise";
 import styled from "styled-components";
+import Dashpic from '../assets/dashpic.jpg';
 
 export const Dashboard = ({getExercises, exercises}) => {
     const userId = localStorage.getItem('userID')
     useEffect(() => {
         getExercises()
     }, [])
+
+    var style= {
+        backgroundImage: `url(${Dashpic})`,
+        height: "800px",
+        margin: "20px 0"
+    }
+
     return (
-        <StyledDiv>
+        <div style={style}>
+               <StyledDiv >
             {
                 exercises
                 .filter(exercise => exercise.user_id == userId)
                 .map(exercise => <Exercise key={exercise.id} exercise={exercise} />)}
-        </StyledDiv>
+        </StyledDiv>  
+        </div>
+   
     )
 }
 
