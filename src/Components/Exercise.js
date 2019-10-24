@@ -43,6 +43,9 @@ export function Exercise(props) {
     openUploadWidget(uploadOptions, (error, photos) => {
       if (!error) {
         console.log(photos);
+        if(photos.event === 'success'){
+          setIds([...imageIds, photos.info.public_id])
+        }
       } else {
         console.log(error);
       }
@@ -56,7 +59,7 @@ export function Exercise(props) {
         <Content>{`Targeted Area: ${targeted_area}`}</Content>
         <Content>{`Reps Completed: ${reps_completed}`}</Content>
 
-        <div>
+        <ImageContainer>
           {imageIds.map(image => (
             <Image
               key={image}
@@ -65,9 +68,9 @@ export function Exercise(props) {
               quality="auto"
             />
           ))}
-        </div>
+        </ImageContainer>
 
-        <div>
+        <ButtonsContainer>
           <Button onClick={() => startEdit(exercise)} color="dark">
             Edit
           </Button>
@@ -77,7 +80,7 @@ export function Exercise(props) {
           <Button onClick={() => deleteExercise(exercise.id)} color="danger">
             Delete
           </Button>
-        </div>
+        </ButtonsContainer>
       </CloudinaryContext>
     </StyledCard>
   );
@@ -95,6 +98,21 @@ const StyledCard = styled(Card)`
     justify-content: space-evenly;
   }
 `;
+
+const ImageContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+
+  img {
+    margin: .5rem .2rem;
+    border-radius: 1rem;
+    width: 30%;
+  }
+`
+
+const ButtonsContainer = styled.div`
+  margin: .4rem 0;
+`
 
 export default connect(
   state => state,
