@@ -36,7 +36,7 @@ export function Exercise(props) {
 
   function uploadImageWithCloudinary() {
     const uploadOptions = {
-      cloudName: "emkaydauda",
+      cloudName: "spotter-journal",
       tags: [exercise.id, exercise.title],
       uploadPreset: "presetOne"
     };
@@ -54,7 +54,7 @@ export function Exercise(props) {
 
   return (
     <StyledCard>
-      <CloudinaryContext cloudName="emkaydauda">
+      <CloudinaryContext cloudName="spotter-journal">
         <Heading>{title}</Heading>
         <Content>{`Targeted Area: ${targeted_area}`}</Content>
         <Content>{`Reps Completed: ${reps_completed}`}</Content>

@@ -20,7 +20,7 @@ export async function  fetchPhotos  (imageTag, setter)  {
     // for demonstration purposes only
     // *************************************************************************
     const options = {
-        cloudName: 'emkaydauda',
+        cloudName: 'spotter-journal',
         format: 'json',
         type: 'list',
         version: Math.ceil(new Date().getTime() / 1000),

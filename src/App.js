@@ -16,7 +16,7 @@ function App(props) {
   });
 
   useEffect( () => {
-    window.cloudinary.setCloudName('emkaydauda')
+    window.cloudinary.setCloudName('spotter-journal')
   }, [])
 
   const store = createStore(
