@@ -50,26 +50,24 @@ export function Exercise(props) {
   }
 
   return (
-    <CloudinaryContext cloudName='emkaydauda'>
-      <StyledCard>
+    <StyledCard>
+      <CloudinaryContext cloudName="emkaydauda">
         <Heading>{title}</Heading>
         <Content>{`Targeted Area: ${targeted_area}`}</Content>
         <Content>{`Reps Completed: ${reps_completed}`}</Content>
 
         <div>
-          {
-            imageIds.map(image => 
-              <Image key = {image}
-            publicId={image}
-            fetch-format="auto"
-            quality="auto"
-          />
-              )
-          }
+          {imageIds.map(image => (
+            <Image
+              key={image}
+              publicId={image}
+              fetch-format="auto"
+              quality="auto"
+            />
+          ))}
         </div>
 
         <div>
-          
           <Button onClick={() => startEdit(exercise)} color="dark">
             Edit
           </Button>
@@ -80,8 +78,8 @@ export function Exercise(props) {
             Delete
           </Button>
         </div>
-      </StyledCard>
-    </CloudinaryContext>
+      </CloudinaryContext>
+    </StyledCard>
   );
 }
 
@@ -92,7 +90,7 @@ const StyledCard = styled(Card)`
   margin-top: 1.5rem;
   padding-bottom: 1rem;
 
-  div {
+  div > div {
     display: flex;
     justify-content: space-evenly;
   }
