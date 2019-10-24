@@ -14,7 +14,7 @@ export function Exercise(props) {
   const startEdit = exercise => {
     beginEdit(exercise);
     console.log(exercise);
-    props.history.push("/exercises/add");
+    props.history.push("/exercises/add"); 
   };
 
   const deleteExercise = id => {
