@@ -9,21 +9,22 @@ import "react-bulma-components/dist/react-bulma-components.min.css";
 import axiosWithAuth from "../utils/AxiosWithAuth";
 
 export function Exercise(props) {
-  const {exercise, beginEdit, removeExercise} = props;
+  const { exercise, beginEdit, removeExercise } = props;
   const { targeted_area, reps_completed, title } = exercise;
-  const startEdit = (exercise) => {
-    beginEdit(exercise)
+  const startEdit = exercise => {
+    beginEdit(exercise);
     console.log(exercise);
-    props.history.push('/exercises')
-  }
+    props.history.push("/exercises/add"); 
+  };
 
-  const deleteExercise = (id) => {
-    axiosWithAuth().delete(`https://weight-lift-1.herokuapp.com/api/exercises/${id}`)
-    .then(({data}) => {
-      removeExercise(exercise)
-    })
-    .catch(err => console.log(err))
-  }
+  const deleteExercise = id => {
+    axiosWithAuth()
+      .delete(`https://weight-lift-1.herokuapp.com/api/exercises/${id}`)
+      .then(({ data }) => {
+        removeExercise(exercise);
+      })
+      .catch(err => console.log(err));
+  };
 
   return (
     <StyledCard>
@@ -31,7 +32,9 @@ export function Exercise(props) {
       <Content>{`Targeted Area: ${targeted_area}`}</Content>
       <Content>{`Reps Completed: ${reps_completed}`}</Content>
       <div>
-        <Button onClick = {() => startEdit(exercise)} color="dark">Edit</Button>
+        <Button onClick={() => startEdit(exercise)} color="dark">
+          Edit
+        </Button>
         <Button onClick={() => deleteExercise(exercise.id)} color="danger">
           Delete
         </Button>
@@ -56,4 +59,4 @@ const StyledCard = styled(Card)`
 export default connect(
   state => state,
   actionCreators
-)(withRouter(Exercise))
+)(withRouter(Exercise));
