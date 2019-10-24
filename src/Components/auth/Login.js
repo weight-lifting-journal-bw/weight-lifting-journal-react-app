@@ -48,7 +48,7 @@ const Login = props => {
           <Label htmlFor="password">password</Label>
           <StyledInput
             id="password"
-            type="text"
+            type="password"
             value={existingUser.password}
             name="password"
             onChange={handleNewUser}

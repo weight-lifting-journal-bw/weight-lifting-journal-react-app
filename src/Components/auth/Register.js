@@ -45,7 +45,7 @@ const Signup = props => {
           />
           <Label>password</Label>
           <StyledInput
-            type="text"
+            type="password"
             value={newUser.password}
             name="password"
             onChange={handleNewUser}
